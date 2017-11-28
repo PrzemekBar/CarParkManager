@@ -141,14 +141,6 @@ public class CarPark {
 
     public void getExtraBill(int amount){
         int billsAmount = 0;
-        if(amount>5){
-            Random random = new Random();
-            int leavingVehicles = random.nextInt(parkingSpotsNumber-freeSpotsLeft);
-            System.out.println("Wieksza od 5. Wyjezdza: "+leavingVehicles);
-            for (int i = 0; i < leavingVehicles; i++) {
-                removeCar(parkingSpots.get(getRandomID()));
-            }
-        }
         for (Map.Entry<String, String> entry : parkingSpots.entrySet()){
             if(!entry.getValue().equals("")) {
                 if (entry.getValue().charAt(0) == 'C' || entry.getValue().charAt(0) == 'B' || entry.getValue().charAt(0) == 'T') {
@@ -157,30 +149,6 @@ public class CarPark {
             }
         }
         boudget+=billsAmount;
-    }
-
-    public String getRandomID(){
-        Random random = new Random();
-        String ID = new String();
-        int number = random.nextInt(parkingSpotsNumber) + 1;
-        boolean isRight = false;
-        do {
-            int type = random.nextInt(3) + 1;
-            switch (type) {
-                case 1:
-                    ID = "C";
-                    break;
-                case 2:
-                    ID = "B";
-                    break;
-                case 3:
-                    ID = "T";
-                    break;
-            }
-            System.out.println(ID + number);
-            isRight = !parkingSpots.get(ID+number).equals("")&&parkingSpots.containsKey(ID+number);
-        }while (isRight);
-        return ID+number;
     }
 
 }
