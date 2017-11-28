@@ -135,7 +135,7 @@ public class Menu {
     }
 
     public void read(){
-        File savedCarPark = new File("savedCarPark.txt");
+        File savedCarPark = new File("savedCarPark");
         List saved=null;
         carPark = new CarPark();
         try {
@@ -146,9 +146,9 @@ public class Menu {
         for (Object o : saved) {
             String[] splited = o.toString().split("=");
 
-            if(Character.isDigit(splited[0].charAt(0)))
+            if(Character.isDigit(o.toString().charAt(0)))
             {
-                carPark.setBoudget(Integer.parseInt(splited.toString()));
+                carPark.setBoudget(Integer.parseInt(o.toString()));
             }
             else {
                 if (splited.length == 2) {
